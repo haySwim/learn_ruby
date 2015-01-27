@@ -1,9 +1,11 @@
-def translate(word)
-  last_letter = word.length - 1
-
-  if word.match(/[aeiou]/)[0]
-    word + 'ay'
-  else
-    word[(1..last_letter)] + word[0] + 'ay'
+def translate(string)
+  pig_latin = ''
+  string.split.each do |word|
+    if word[0].match(/^[aeiou]/)
+      pig_latin += word + 'ay '
+    else
+      pig_latin += word + word.slice!(/(^qu|^[^aeio]+)/) + 'ay '
+    end
   end
+  pig_latin.strip
 end
